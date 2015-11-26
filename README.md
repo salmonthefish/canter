@@ -1,2 +1,2 @@
-# carat
+### decanter
 a simple configuration language
