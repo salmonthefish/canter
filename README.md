@@ -1,2 +1,2 @@
-### decanter
+### carat
 a simple configuration language
