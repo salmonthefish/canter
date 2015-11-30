@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'carat'
-puts 'hello world'
+parse_file(ARGV[0])
