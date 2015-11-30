@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'carat'
+parse_file(ARGV[0])

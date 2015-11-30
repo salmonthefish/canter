@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+BASE=$(dirname $0)
+
+ruby -I "$BASE/lib" "$BASE/bin/carat" $@
