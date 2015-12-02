@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 
 require 'carat'
+require 'pry'
+
 parse_file(ARGV[0])
