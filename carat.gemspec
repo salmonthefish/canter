@@ -9,7 +9,5 @@ Gem::Specification.new do |s|
   s.executables   = ['carat']
   s.license       = 'MIT'
 
-  s.add_runtime_dependency 'parslet', '~> 1.7'
-
   s.add_development_dependency 'rspec', '~> 3.4'
 end
