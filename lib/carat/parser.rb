@@ -1,4 +1,5 @@
 require 'strscan'
+require 'pry'
 
 module Carat
 
@@ -8,8 +9,11 @@ module Carat
     WHITESPACE = /\s+/
     KEY = /\w+/
     EQ = /=/
-    VALUE = /.*/
     NEWLINE = /\n/
+    
+    # values
+    INT = /\A\d+\Z/
+    STRING = /.*/
 
     def parse_file(file_name)
       str = File.read(file_name)
@@ -17,7 +21,7 @@ module Carat
     end
     
     def parse(str)
-      @ast = {}
+      @ast = []
       @line = 0
       
       @scanner = StringScanner.new(str)
@@ -31,25 +35,66 @@ module Carat
     end
 
     def syntax_error
+      p @ast
       SyntaxError.new("Syntax error on line #{@line} (pos. #{@scanner.pos})")
     end
 
     def parse_pair
-      skip(WHITESPACE)
-      key = match(KEY)
-      skip(WHITESPACE)
-      match(EQ)
-      skip(WHITESPACE)
-      val = match(VALUE)
-      match(NEWLINE)
-
-      @ast[key] = {:string => val}
+      skip_whitespace
+      @ast << eat_key
+      skip_whitespace
+      @ast << eat_eq
+      skip_whitespace
+      @ast << eat_value
+      @ast << eat_newline
     end
 
-    def match(regex)
-      match = @scanner.scan(regex)
-      fail syntax_error unless match
-      match
+    def eat(regex)
+      token = @scanner.scan(regex)
+      fail syntax_error unless token
+      token
+    end
+
+    def skip_whitespace
+      skip(WHITESPACE)
+    end
+
+    def eat_eq
+      [:EQ, eat(EQ)]
+    end
+
+    def eat_newline
+      [:NEWLINE, eat(NEWLINE)]
+    end
+
+    def eat_key
+      [:KEY, eat(KEY)]
+    end
+
+    def eat_value
+      val = @scanner.check_until(/\n/).chomp
+      type = match_value(val)
+
+      eat(type_to_regex(type))
+
+
+      [type, val]
+    end
+
+    def match_value(value)
+      case value
+      when INT
+        :INT
+      else
+        :STRING
+      end
+    end
+
+    def type_to_regex(type)
+      case type
+      when :INT then INT
+      when :STRING then STRING
+      end
     end
 
     def skip(regex)
