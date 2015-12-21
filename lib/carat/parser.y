@@ -6,8 +6,8 @@ rule
     ;
 
   entities
-    : entities NEWLINE entity
-    | entity
+    : entities NEWLINE entity NEWLINE
+    | entity NEWLINE
     ;
 
   entity
@@ -17,47 +17,67 @@ rule
     ;
 
   object
-    : KEY '{' entities '}'
+    : start_object entities end_object
     ;
 
   named_object
-    : KEY STRING '{' entities '}'
+    : start_named_object entities end_object
     ;
 
   pair
-    : KEY '=' value
+    : key '=' value { @handler.pair(val[0], val[2]) }
     ;
 
-  values
-    : values ',' value
-    | value
+  key
+    : KEY
+    ;
+
+  values_minus_array
+    : values_minus_array ',' value_minus_array
+    | value_minus_array
+    ;
+
+  string
+    : STRING { @handler.name(val[0]) }
     ;
 
   value
-    : STRING
-    | NUMBER
-    | TRUE
-    | FALSE
+    | literal
     | array
     ;
 
-  array
-    : '[' values ']'
+  value_minus_array
+    | literal
     ;
 
+  literal
+    : STRING
+    | NUMBER { n = val[0]; result = n.count('.') > 0 ? n.to_f : n.to_i }
+    | TRUE   { result = true }
+    | FALSE  { result = false }
+    ;
 
+  array
+    : start_array values_minus_array end_array
+    ;
+
+  start_object : key '{'              { @handler.start_object }
+  start_named_object : key string '{' { @handler.start_object }
+  end_object : '}'                    { @handler.end_object }
+  start_array : '['                   { @handler.start_array }
+  end_array : ']'                     { @handler.end_array }
 end
 
 ---- inner
 
-  require 'carat/handler'
+  require_relative 'handler'
 
   attr_reader :handler
 
   def initialize(tokenizer, handler = Handler.new)
     @tokenizer = tokenizer
     @handler = handler
-    super
+    super()
   end
 
   def next_token

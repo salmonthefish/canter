@@ -1,5 +1,5 @@
-require 'carat/tokenizer'
-require 'carat/parser'
+require_relative 'carat/tokenizer'
+require_relative 'carat/parser'
 require 'stringio'
 
 module Carat
