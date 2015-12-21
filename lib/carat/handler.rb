@@ -10,14 +10,9 @@ module Carat
       push [:hash]
     end
 
-    def start_array
-      push [:array]
-    end
-
-    def end_array
+    def end_object
       @stack.pop
     end
-    alias :end_object :end_array
 
     def pair(v1, v2)
       @stack.last << [:pair, v1, v2]

@@ -6,7 +6,7 @@ rule
     ;
 
   entities
-    : entities NEWLINE entity NEWLINE
+    : entities entity NEWLINE
     | entity NEWLINE
     ;
 
@@ -33,8 +33,8 @@ rule
     ;
 
   values_minus_array
-    : values_minus_array ',' value_minus_array
-    | value_minus_array
+    : values_minus_array ',' value_minus_array { result.push val[2] }
+    | value_minus_array { result = val }
     ;
 
   string
@@ -58,14 +58,13 @@ rule
     ;
 
   array
-    : start_array values_minus_array end_array
+    : '[' values_minus_array ']' { result = val[1] }
+    | '[' ']' { result = [] }
     ;
 
   start_object : key '{'              { @handler.start_object }
   start_named_object : key string '{' { @handler.start_object }
   end_object : '}'                    { @handler.end_object }
-  start_array : '['                   { @handler.start_array }
-  end_array : ']'                     { @handler.end_array }
 end
 
 ---- inner
