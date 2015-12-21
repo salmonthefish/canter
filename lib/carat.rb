@@ -1,5 +1,5 @@
-require 'carat/parser'
+require 'carat/tokenizer'
 
 def parse_file(file_name)
-  p Carat::Parser.new.parse_file(file_name)
+  p Carat::Tokenizer.new(file_name)
 end
