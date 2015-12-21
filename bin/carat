@@ -2,4 +2,4 @@
 
 require 'carat'
 
-parse_file(ARGV[0])
+Carat.load_file(ARGV[0])
