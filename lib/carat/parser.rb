@@ -30,46 +30,46 @@ module Carat
 ##### State transition tables begin ###
 
 racc_action_table = [
-    10,    10,    21,    20,    17,    28,    29,    30,    31,    16,
-    10,    23,    23,    18,    28,    29,    30,    31,    28,    29,
-    30,    31,    37,    10,    38,    32,    39,    13,    33,    10,
-    11,    10 ]
+    10,    10,    32,    33,    34,    35,    32,    33,    34,    35,
+    42,    27,    27,    36,    32,    33,    34,    35,    43,    23,
+    44,   -11,    20,    22,    19,    24,    25,    10,    10,    16,
+    37,    38,    10,    14,    10 ]
 
 racc_action_check = [
-    15,    14,    12,    11,     9,    38,    38,    38,    38,     9,
-     8,    15,    14,     9,    32,    32,    32,    32,    16,    16,
-    16,    16,    32,     7,    34,    16,    34,     3,    19,     2,
-     1,     0 ]
+    17,    18,    36,    36,    36,    36,    19,    19,    19,    19,
+    36,    17,    18,    19,    43,    43,    43,    43,    39,    13,
+    39,    10,    11,    12,     9,    14,    15,     8,     7,     3,
+    22,    23,     2,     1,     0 ]
 
 racc_action_pointer = [
-    29,    30,    27,    20,   nil,   nil,   nil,    21,     8,     1,
-   nil,     3,    -5,   nil,    -1,    -2,    15,   nil,   nil,    16,
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,
-   nil,   nil,    11,   nil,    15,   nil,   nil,   nil,     2,   nil,
-   nil ]
+    32,    33,    30,    22,   nil,   nil,   nil,    26,    25,    16,
+    18,    19,    11,     7,    25,    19,   nil,    -2,    -1,     3,
+   nil,   nil,    23,    24,   nil,   nil,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil,   nil,   nil,   nil,    -1,   nil,   nil,     9,
+   nil,   nil,   nil,    11,   nil,   nil ]
 
 racc_action_default = [
-   -28,   -28,    -1,   -28,    -4,    -5,    -6,   -28,   -28,   -28,
-   -10,   -28,   -28,    -3,   -28,   -28,   -14,   -13,   -25,   -28,
-    41,    -2,    -7,   -27,    -8,    -9,   -15,   -16,   -19,   -20,
-   -21,   -22,   -17,   -26,   -28,   -12,   -18,   -24,   -17,   -23,
-   -11 ]
+   -31,   -31,    -1,   -31,    -4,    -5,    -6,   -31,   -31,   -26,
+   -10,   -31,   -31,   -31,   -31,   -31,    -3,   -31,   -31,   -15,
+   -14,   -27,   -31,   -31,    46,    -2,    -7,   -30,    -8,    -9,
+   -16,   -17,   -20,   -21,   -22,   -23,   -18,   -28,   -29,   -31,
+   -13,   -19,   -25,   -18,   -24,   -12 ]
 
 racc_goto_table = [
-    12,     2,    22,    24,    35,    34,    25,     1,    14,    15,
-    40,    19,    12,    12,    26,    27 ]
+    15,     2,    39,    40,    26,    28,    29,     1,    17,    18,
+    45,    21,    30,    31,   nil,    15,    15 ]
 
 racc_goto_check = [
-     3,     2,     8,     8,    13,    12,    11,     1,     2,     2,
-    13,    14,     3,     3,    15,    16 ]
+     3,     2,    13,    14,     8,     8,    11,     1,     2,     2,
+    14,    15,    16,    17,   nil,     3,     3 ]
 
 racc_goto_pointer = [
-   nil,     7,     1,    -2,   nil,   nil,   nil,   nil,   -12,   nil,
-   nil,   -10,   -27,   -28,     2,    -2,    -1 ]
+   nil,     7,     1,    -2,   nil,   nil,   nil,   nil,   -13,   nil,
+   nil,   -13,   nil,   -34,   -33,     0,    -7,    -6,   nil,   nil ]
 
 racc_goto_default = [
    nil,   nil,   nil,     3,     4,     5,     6,     7,   nil,     8,
-     9,   nil,   nil,   nil,   nil,    36,   nil ]
+     9,   nil,    11,   nil,   nil,   nil,    41,   nil,    13,    12 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
@@ -83,27 +83,30 @@ racc_reduce_table = [
   3, 19, :_reduce_none,
   3, 20, :_reduce_9,
   1, 24, :_reduce_none,
-  3, 26, :_reduce_11,
-  1, 26, :_reduce_12,
-  1, 28, :_reduce_13,
+  1, 26, :_reduce_11,
+  3, 27, :_reduce_12,
+  1, 27, :_reduce_13,
+  1, 29, :_reduce_14,
   0, 25, :_reduce_none,
   1, 25, :_reduce_none,
   1, 25, :_reduce_none,
-  0, 27, :_reduce_none,
-  1, 27, :_reduce_none,
-  1, 29, :_reduce_none,
-  1, 29, :_reduce_20,
-  1, 29, :_reduce_21,
-  1, 29, :_reduce_22,
-  3, 30, :_reduce_23,
-  2, 30, :_reduce_24,
-  2, 21, :_reduce_25,
-  3, 23, :_reduce_26,
-  1, 22, :_reduce_27 ]
+  0, 28, :_reduce_none,
+  1, 28, :_reduce_none,
+  1, 30, :_reduce_none,
+  1, 30, :_reduce_21,
+  1, 30, :_reduce_22,
+  1, 30, :_reduce_23,
+  3, 31, :_reduce_24,
+  2, 31, :_reduce_25,
+  1, 32, :_reduce_26,
+  2, 33, :_reduce_27,
+  3, 23, :_reduce_none,
+  3, 21, :_reduce_29,
+  1, 22, :_reduce_30 ]
 
-racc_reduce_n = 28
+racc_reduce_n = 31
 
-racc_shift_n = 41
+racc_shift_n = 46
 
 racc_token_table = {
   false => 0,
@@ -168,11 +171,14 @@ Racc_token_to_s_table = [
   "start_named_object",
   "key",
   "value",
+  "group_key",
   "values_minus_array",
   "value_minus_array",
   "string",
   "literal",
-  "array" ]
+  "array",
+  "name",
+  "group_name" ]
 
 Racc_debug_parser = false
 
@@ -197,28 +203,31 @@ Racc_debug_parser = false
 # reduce 8 omitted
 
 def _reduce_9(val, _values, result)
- @handler.pair(val[0], val[2]) 
+ @handler.pair(val[0].to_sym, val[2]) 
     result
 end
 
 # reduce 10 omitted
 
 def _reduce_11(val, _values, result)
- result.push val[2] 
+ @handler.start_object 
     result
 end
 
 def _reduce_12(val, _values, result)
- result = val 
+ result.push val[2] 
     result
 end
 
 def _reduce_13(val, _values, result)
- @handler.name(val[0]) 
+ result = val 
     result
 end
 
-# reduce 14 omitted
+def _reduce_14(val, _values, result)
+ @handler.name(val[0]) 
+    result
+end
 
 # reduce 15 omitted
 
@@ -230,33 +239,30 @@ end
 
 # reduce 19 omitted
 
-def _reduce_20(val, _values, result)
+# reduce 20 omitted
+
+def _reduce_21(val, _values, result)
  n = val[0]; result = n.count('.') > 0 ? n.to_f : n.to_i 
     result
 end
 
-def _reduce_21(val, _values, result)
+def _reduce_22(val, _values, result)
  result = true 
     result
 end
 
-def _reduce_22(val, _values, result)
+def _reduce_23(val, _values, result)
  result = false 
     result
 end
 
-def _reduce_23(val, _values, result)
+def _reduce_24(val, _values, result)
  result = val[1] 
     result
 end
 
-def _reduce_24(val, _values, result)
- result = [] 
-    result
-end
-
 def _reduce_25(val, _values, result)
- @handler.start_object 
+ result = [] 
     result
 end
 
@@ -266,6 +272,18 @@ def _reduce_26(val, _values, result)
 end
 
 def _reduce_27(val, _values, result)
+ @handler.group_name(val[0].to_sym, val[1].to_sym) 
+    result
+end
+
+# reduce 28 omitted
+
+def _reduce_29(val, _values, result)
+ @handler.name(val[0].to_sym) 
+    result
+end
+
+def _reduce_30(val, _values, result)
  @handler.end_object 
     result
 end

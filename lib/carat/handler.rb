@@ -22,6 +22,10 @@ module Carat
       @stack.last << [:name, s]
     end
 
+    def group_name(n1, n2)
+      @stack.last << [:group_name, n1, n2]
+    end
+
     def result
       @stack
     end

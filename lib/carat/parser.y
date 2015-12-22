@@ -25,11 +25,15 @@ rule
     ;
 
   pair
-    : key '=' value { @handler.pair(val[0], val[2]) }
+    : key '=' value { @handler.pair(val[0].to_sym, val[2]) }
     ;
 
   key
     : KEY
+    ;
+
+  group_key
+    : KEY { @handler.start_object }
     ;
 
   values_minus_array
@@ -62,9 +66,17 @@ rule
     | '[' ']' { result = [] }
     ;
 
-  start_object : key '{'              { @handler.start_object }
-  start_named_object : key string '{' { @handler.start_object }
-  end_object : '}'                    { @handler.end_object }
+  name
+    : key { @handler.start_object }
+    ;
+
+  group_name
+    : group_key string { @handler.group_name(val[0].to_sym, val[1].to_sym) }
+    ;
+  
+  start_named_object : group_name '{' NEWLINE
+  start_object : name '{' NEWLINE             { @handler.name(val[0].to_sym) }
+  end_object : '}'                            { @handler.end_object }
 end
 
 ---- inner
